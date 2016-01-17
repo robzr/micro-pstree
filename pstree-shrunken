@@ -4,8 +4,8 @@ grep PPi /p*/*/s*s 2>/dev/null|sed -n "/\t$1$/s#.*c/\([0-9]*\).*\$#\1#p"
 }
 P(){
 [ $1 = 0 ]&&return
-[ $1 = 1 ]||echo -n -
-printf %-6s $1
+[ $1 = 1 ]||printf -
+printf $1\ 
 tr \\0 \  </proc/$1/cmdline
 echo
 [ $1 = $$ ]&&return
