@@ -1,16 +1,21 @@
 #!/bin/sh
-K(){ grep PPi /p*/[0-9]*/status 2>/dev/null|sed -n "/\t$1$/s#^.*c/\([0-9]*\).*\$#\1#p";}
-R(){ [ $1 = 0 ]&&return
-[ $1 != 1 ]&&echo -n '- '
-printf "%5s: " $1
-cat /proc/$1/cmdline|tr \\0 \ 
+K(){
+grep PPi /p*/*/s*s 2>/dev/null|sed -n "/\t$1$/s#.*c/\([0-9]*\).*\$#\1#p"
+}
+P(){
+[ $1 = 0 ]&&return
+[ $1 != 1 ]&&echo -n -
+printf %5s:\  $1
+tr \\0 \  </proc/$1/cmdline
 echo
 [ $1 = $$ ]&&return
-l=0
+L=0
 for k in `K $1`
-do [ $l != 0 ]&&R $l|sed -ne's/L    /     /g' -e'/[0-9]:/s/^/    |/p'
-l=$k
+do
+P $L|sed -n '/[0-9]:/s/^/    |/p'
+L=$k
 done
-R $l|sed -ne '/[0-9]:/s/^/    L/p';echo '  '
+P $L|sed -n '/[0-9]:/s/^/    L/p'
+echo '  '
 }
-R 1
+P 1|sed 's/L    /     /g'
