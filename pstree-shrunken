@@ -1,6 +1,6 @@
 #!/bin/sh
 K(){
-grep PP /*/*/s*s 2>/dev/null|sed -n "/\t$1$/s#.*c/\([0-9]*\).*\$#\1#p"
+egrep "^PPid:   $1$" /*/[0-9]*/s*s | cut -f3 -d/
 }
 P(){
 [ $1 = 0 ]&&return

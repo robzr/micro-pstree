@@ -1,6 +1,8 @@
 #!/bin/sh
 #robzr/micro-pstree
-get () { grep PPid: /proc/[0-9]*/status 2>/dev/null | sed -n "/\t$1$/s#^/proc/\([0-9]*\).*\$#\1#p" ; }
+get () { 
+ egrep "^PPid:	*$1$" /proc/[0-9]*/status | cut -f3 -d/
+}
 prn () {
  [ $1 = 0 ] && return
  echo --$1\ `tr \\\0 \  </proc/$1/cmdline`

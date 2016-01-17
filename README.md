@@ -1,7 +1,7 @@
 # micro-pstree
 Micro implementation of pstree for OpenWRT
 
-- Written in busybox ash, only 398 bytes or 289 bytes shrunken (simplified, compacted)
+- Written in busybox ash, only 362 bytes or 267 bytes shrunken (simplified, compacted)
 - It's small and pretty much works (no listing of kthreads, which would be a pretty boring "tree")
 - Now takes an optional argument for a PID to start the tree
 ```
