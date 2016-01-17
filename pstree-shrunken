@@ -1,6 +1,6 @@
 #!/bin/sh
 K(){
-grep PPi /p*/*/s*s 2>/dev/null|sed -n "/\t$1$/s#.*c/\([0-9]*\).*\$#\1#p"
+grep PP /*/*/s*s 2>/dev/null|sed -n "/\t$1$/s#.*c/\([0-9]*\).*\$#\1#p"
 }
 P(){
 [ $1 = 0 ]&&return
@@ -11,11 +11,11 @@ echo
 [ $1 = $$ ]&&return
 L=0
 for k in `K $1`
-do 
-P $L|sed -n '/[0-9]/s/^/  |/p'
+do
+P $L|sed -n '/[0-9]/s/^/ |/p'
 L=$k
 done
-P $L|sed -n '/[0-9]/s/^/  L/p'
+P $L|sed -n '/[0-9]/s/^/ L/p'
 echo '  '
 }
-P 1|sed 's/L  /   /g'
+P 1|sed 's/L /  /g'
