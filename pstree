@@ -1,19 +1,15 @@
 #!/bin/sh
-# micro-pstree @robzr
-getKids () { fgrep PPid: /proc/[0-9]*/status 2>/dev/null | sed -n "/\t$1$/s#^/proc/\([0-9]*\).*\$#\1#p" ; }
-printKids () {
-  [ $1 = 0 ] && return
-  [ $1 = 1 ] || echo -n --
-  printf %5s:\  $1
-  tr \\0 \  </proc/$1/cmdline
-  echo
-  [ $1 = $$ ] && return
-  lastKid=0
-  for kid in `getKids $1 | sort -n` ; do
-    printKids $lastKid | sed -n '/[0-9]:/s/^/    |/p'
-    lastKid=$kid
-  done
-  printKids $lastKid | sed -n '/[0-9]:/s/^/    L/p'
-  echo '  '
+#robzr/micro-pstree
+get () { grep PPid: /proc/[0-9]*/status 2>/dev/null | sed -n "/\t$1$/s#^/proc/\([0-9]*\).*\$#\1#p" ; }
+prn () {
+ [ $1 = 0 ] && return
+ echo --$1\ `tr \\\0 \  </proc/$1/cmdline`
+ [ $1 = $$ ] && return
+ lk=0
+ for kid in `get $1 | sort -n` ; do 
+  prn $lk | sed -n '/[0-9]/s/^/  |/p'
+  lk=$kid
+ done
+ prn $lk | sed -n '/[0-9]/s/^/  L/p'
 }
-printKids 1 | sed 's/L    /     /g'
+prn ${1:-1} | sed 's/L  /   /g'
