@@ -1,9 +1,9 @@
 #!/bin/sh
-# 524 byte pstree @robzr
+# 522 byte pstree @robzr
 getKids () { fgrep PPid: /proc/[0-9]*/status 2>/dev/null | sed -n "/\t$1$/s#^/proc/\([0-9]*\).*\$#\1#p" ; }
 printKids () {
   [ $1 = 0 ] && return
-  [ $1 != 1 ] && echo -n -\
+  [ $1 != 1 ] && echo -n --
   printf %5s:\  $1
   tr \\0 \  </proc/$1/cmdline
   echo
