@@ -12,10 +12,10 @@ echo
 L=0
 for k in `K $1`
 do 
-P $L|sed -n '/[0-9]/s/^/   |/p'
+P $L|sed -n '/[0-9]/s/^/  |/p'
 L=$k
 done
-P $L|sed -n '/[0-9]/s/^/   L/p'
+P $L|sed -n '/[0-9]/s/^/  L/p'
 echo '  '
 }
-P 1|sed 's/L   /    /g'
+P 1|sed 's/L  /   /g'
