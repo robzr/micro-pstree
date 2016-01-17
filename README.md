@@ -1,9 +1,9 @@
 # micro-pstree
 Micro implementation of pstree for OpenWRT
 
-- Written in busybox ash, only 398 bytes or 283 bytes shrunken (simplified)
+- Written in busybox ash, only 398 bytes or 289 bytes shrunken (simplified, compacted)
 - It's small and pretty much works (no listing of kthreads, which would be a pretty boring "tree")
-- pstree now takes an optional argument for a PID to start the tree
+- Now takes an optional argument for a PID to start the tree
 ```
 	root@gw:~# pstree 885
 	--885 /usr/sbin/dropbear -F -P /var/run/dropbear.1.pid -p 22 -K 300
