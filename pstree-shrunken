@@ -4,10 +4,7 @@ grep PP /*/*/s*s 2>/dev/null|sed -n "/\t$1$/s#.*c/\([0-9]*\).*\$#\1#p"
 }
 P(){
 [ $1 = 0 ]&&return
-[ $1 = 1 ]||printf -
-printf $1\ 
-tr \\0 \  </proc/$1/cmdline
-echo
+echo -$1 `cat /*/$1/c*e|tr \\\0 \ `
 [ $1 = $$ ]&&return
 L=0
 for k in `K $1`
@@ -16,6 +13,5 @@ P $L|sed -n '/[0-9]/s/^/ |/p'
 L=$k
 done
 P $L|sed -n '/[0-9]/s/^/ L/p'
-echo '  '
 }
 P 1|sed 's/L /  /g'
