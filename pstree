@@ -1,17 +1,17 @@
 #!/bin/sh
 #robzr/micro-pstree
 get () { 
- egrep "^PPid:	*$1$" /proc/[0-9]*/status | cut -f3 -d/
+ egrep "^PPid:	*$1$" /proc/[0-9]*/s*s | cut -f3 -d/
 }
 prn () {
  [ $1 = 0 ] && return
- echo --$1\ `tr \\\0 \  </proc/$1/cmdline`
+ echo "- $1 `tr '\0' \ </proc/$1/cmdline`"
  [ $1 = $$ ] && return
  lk=0
- for kid in `get $1 | sort -n` ; do 
-  prn $lk | sed -n '/[0-9]/s/^/  |/p'
+ for kid in `get $1 | sort -n`; do 
+  prn $lk | sed -n '/[0-9]/s/^/   |/p'
   lk=$kid
  done
- prn $lk | sed -n '/[0-9]/s/^/  L/p'
+ prn $lk | sed -n '/[0-9]/s/^/   L/p'
 }
-prn ${1:-1} | sed 's/L  /   /g'
+prn ${1:-1} | sed -Ee 's/L   /    /g' -e 's/^[- ] ? ?//'
