@@ -1,7 +1,7 @@
 #!/bin/sh
 #robzr/micro-pstree
 get () { 
- egrep "^PPid:	*$1$" /proc/[0-9]*/s*s | cut -f3 -d/
+ egrep "^PPid:	*$1$" /proc/[0-9]*/s*s 2>/dev/null | cut -f3 -d/
 }
 prn () {
  [ $1 = 0 ] && return

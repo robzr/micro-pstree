@@ -1,7 +1,7 @@
 # micro-pstree
 Micro implementation of pstree for OpenWRT
 
-- Written in busybox ash, only 385 bytes
+- Written in busybox ash, only 397 bytes
 - Optional argument for root PID
 ```
 root@gw:~# pstree 885
