@@ -1,6 +1,8 @@
 # micro-pstree
 Micro implementation of pstree for OpenWRT
 
+Moved to https://github.com/robzr/OpenWRT-utils
+
 - Written in busybox ash, only 397 bytes
 - Optional argument for root PID
 ```
